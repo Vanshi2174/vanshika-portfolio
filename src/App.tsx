@@ -3,6 +3,7 @@ import { Navbar } from './components/common/Navbar';
 import { Hero } from './components/hero/Hero';
 import { About } from './components/about/About';
 import { Skills } from './components/skills/Skills';
+import { Certifications } from './components/certifications/Certifications';
 import { Projects } from './components/projects/Projects';
 import { Achievements } from './components/achievements/Achievements';
 import { Journey } from './components/journey/Journey';
@@ -11,6 +12,8 @@ import { Contact } from './components/contact/Contact';
 import { Footer } from './components/common/Footer';
 import { BootLoader } from './components/boot/BootLoader';
 import { ResumeModal } from './components/resume/ResumeModal';
+import { SmoothScrollProvider } from './components/common/SmoothScrollProvider';
+import { ScrollProgress } from './components/common/ScrollProgress';
 import { useActiveSection } from './hooks/useActiveSection';
 import confetti from 'canvas-confetti';
 
@@ -18,7 +21,7 @@ export function App() {
   const [bootComplete, setBootComplete] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
-  const sectionIds = ['home', 'about', 'skills', 'projects', 'achievements', 'journey', 'resume', 'contact'];
+  const sectionIds = ['home', 'about', 'skills', 'certifications', 'projects', 'achievements', 'journey', 'resume', 'contact'];
   const activeSection = useActiveSection(sectionIds);
 
   const handleDownloadResume = () => {
@@ -30,45 +33,51 @@ export function App() {
     });
 
     const link = document.createElement('a');
-    link.href = '/profile.png';
-    link.download = 'Vanshika_Prajapati_Resume.png';
+    link.href = '/resume.pdf';
+    link.download = 'Vanshika_Prajapati_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   return (
-    <div className="min-h-screen bg-[#050508] text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* High-Tech Terminal Boot Sequence */}
-      {!bootComplete && (
-        <BootLoader onComplete={() => setBootComplete(true)} />
-      )}
+    <SmoothScrollProvider>
+      <div className="min-h-screen bg-[#050508] text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden">
+        {/* Glowing Scroll Progress Bar */}
+        <ScrollProgress />
 
-      {/* Primary Navigation */}
-      <Navbar activeSection={activeSection} />
+        {/* High-Tech Terminal Boot Sequence */}
+        {!bootComplete && (
+          <BootLoader onComplete={() => setBootComplete(true)} />
+        )}
 
-      {/* Main Content Sections */}
-      <main>
-        <Hero onOpenResumeModal={() => setResumeModalOpen(true)} />
-        <About />
-        <Skills />
-        <Projects />
-        <Achievements />
-        <Journey />
-        <Resume />
-        <Contact />
-      </main>
+        {/* Primary Navigation */}
+        <Navbar activeSection={activeSection} />
 
-      {/* Footer */}
-      <Footer />
+        {/* Main Content Sections with Strict Sequential Order */}
+        <main>
+          <Hero onOpenResumeModal={() => setResumeModalOpen(true)} />
+          <About />
+          <Skills />
+          <Certifications />
+          <Projects />
+          <Achievements />
+          <Journey />
+          <Resume />
+          <Contact />
+        </main>
 
-      {/* Global Resume Modal (triggered from Hero 'View Resume' button) */}
-      <ResumeModal
-        isOpen={resumeModalOpen}
-        onClose={() => setResumeModalOpen(false)}
-        onDownload={handleDownloadResume}
-      />
-    </div>
+        {/* Footer */}
+        <Footer />
+
+        {/* Global Resume Modal */}
+        <ResumeModal
+          isOpen={resumeModalOpen}
+          onClose={() => setResumeModalOpen(false)}
+          onDownload={handleDownloadResume}
+        />
+      </div>
+    </SmoothScrollProvider>
   );
 }
 

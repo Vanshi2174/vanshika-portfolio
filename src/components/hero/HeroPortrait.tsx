@@ -1,63 +1,125 @@
-import React from 'react';
-import { Award, Sparkles, Terminal } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * HeroPortrait Component
- * - Replaces the rotating universe / orbital 3D element with Vanshika's authentic professional photo
- * - Preserves 100% natural facial identity, features, smile, glasses, and skin tone
- * - Incorporates subtle blue-violet ambient rim lighting that integrates seamlessly with the dark theme
- * - Zero orbital rings and zero universe animations as requested
- * - Includes futuristic metadata chips matching the high-tech aesthetic
+ * Authentic Hero Portrait Component
+ * - Large, commanding scale matching the reference design.
+ * - Displays authentic portrait with glowing cyan hexagon, subtle orbit lines, and deep space nebula.
+ * - Preserves real face, smile, glasses, hairstyle, and blue collar + dark vest outfit.
+ * - Melts seamlessly into the #050814 dark navy background with smooth edge masking and gradient scrims.
+ * - Stacking context isolated with positive z-indices so no elements slip behind section background.
  */
 export const HeroPortrait: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    // Subtle, graceful mouse parallax
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      const normX = (e.clientX / innerWidth) * 2 - 1;
+      const normY = (e.clientY / innerHeight) * 2 - 1;
+      setMouseOffset({
+        x: normX * 8, // gentle 8px shift
+        y: normY * 6,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[480px] mx-auto aspect-square flex items-center justify-center">
-      {/* 1. Multi-layered Ambient Backlighting (Subtle Blue-Violet & Cyan aura) */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-600/25 via-blue-500/15 to-cyan-400/20 blur-3xl -z-10 transform scale-110 pointer-events-none" />
-      <div className="absolute -inset-4 rounded-full bg-purple-600/15 blur-2xl -z-10 pointer-events-none" />
+    <div
+      ref={containerRef}
+      className="relative isolate w-full max-w-[520px] sm:max-w-[560px] lg:max-w-[600px] xl:max-w-[640px] aspect-[554/598] mx-auto flex items-center justify-center select-none"
+    >
+      {/* ========================================================
+          1. Ambient Volumetric Glow (Contained within isolated stacking context)
+          ======================================================== */}
+      {/* Core Cyan & Royal Blue Backlight Glow */}
+      <div 
+        className="absolute inset-4 rounded-full bg-gradient-to-tr from-blue-600/30 via-cyan-400/25 to-blue-500/15 blur-3xl pointer-events-none z-0 transition-transform duration-700 ease-out"
+        style={{
+          transform: `translate3d(${-mouseOffset.x * 0.5}px, ${-mouseOffset.y * 0.5}px, 0)`,
+        }}
+      />
 
-      {/* 2. Futuristic Geometric Framing Outer Glow Ring (Static/Refined, NO orbital animation) */}
-      <div className="relative w-[340px] sm:w-[390px] md:w-[420px] h-[340px] sm:h-[390px] md:h-[420px] rounded-full p-2 bg-gradient-to-b from-indigo-500/40 via-white/5 to-cyan-400/30 border border-white/10 shadow-2xl shadow-indigo-950/60 flex items-center justify-center group">
-        
-        {/* Subtle Decorative Precision Corner Markers */}
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent rounded-full" />
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent rounded-full" />
-        
-        {/* Inner Glass Bezel */}
-        <div className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#0a0d17] to-[#04060c] p-2 flex items-center justify-center border border-white/10">
-          
-          {/* Subtle Inner Ambient Rim Light */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500/10 via-transparent to-cyan-400/15 pointer-events-none z-10" />
+      {/* Top-Right Ambient Nebula Light */}
+      <div 
+        className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-cyan-400/15 blur-3xl pointer-events-none z-0"
+      />
 
-          {/* Genuine High-Resolution Portrait of Vanshika Prajapati */}
+      {/* ========================================================
+          2. High-Resolution Authentic Portrait with Hexagon
+          ======================================================== */}
+      <div
+        className="relative w-full h-full flex items-center justify-center will-change-transform transition-transform duration-200 ease-out z-10"
+        style={{
+          transform: `translate3d(${mouseOffset.x}px, ${mouseOffset.y}px, 0)`,
+        }}
+      >
+        {/* Portrait Container with Feathered Edge Masking */}
+        <div 
+          className="relative w-full h-full overflow-hidden"
+          style={{
+            // Smoothly feather all outer edges into the navy background
+            maskImage: 'radial-gradient(ellipse 92% 92% at 50% 48%, black 72%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 92% 92% at 50% 48%, black 72%, transparent 100%)',
+          }}
+        >
           <img
-            src="/profile.png"
+            src="/portrait-hero.png"
             alt="Vanshika Prajapati"
-            className="w-full h-full object-cover object-center rounded-full transition-transform duration-500 group-hover:scale-105 filter contrast-[1.03] brightness-[1.01]"
+            className="w-full h-full object-contain object-center filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.8)] contrast-[1.03] brightness-[1.01]"
             loading="eager"
+            onError={(e) => {
+              // Fallback to portrait-cinematic if portrait-hero is cached
+              const target = e.currentTarget;
+              if (!target.src.includes('portrait-cinematic.png')) {
+                target.src = '/portrait-cinematic.png';
+              }
+            }}
           />
-
-          {/* Subtle Specular Vignette Overlay */}
-          <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10 pointer-events-none" />
         </div>
 
-        {/* 3. Floating High-Tech Metadata Pill — Top Left */}
-        <div className="absolute -top-3 -left-2 sm:left-2 z-20 glass-panel px-3.5 py-1.5 rounded-full border border-indigo-500/30 flex items-center gap-2 shadow-xl shadow-black/80 hover:border-cyan-400/50 transition-colors">
-          <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-          <span className="text-[11px] font-mono font-medium text-slate-200 tracking-wider">
-            B.Tech CSE '28
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-        </div>
+        {/* Seamless Edge Scrims to prevent rectangular boundaries */}
+        {/* Bottom Scrim: Melts naturally into #050814 */}
+        <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 bg-gradient-to-t from-[#050814] via-[#050814]/80 to-transparent pointer-events-none z-20" />
 
-        {/* 4. Floating High-Tech Achievement Pill — Bottom Right */}
-        <div className="absolute -bottom-3 -right-2 sm:right-2 z-20 glass-panel px-3.5 py-1.5 rounded-full border border-indigo-500/30 flex items-center gap-2 shadow-xl shadow-black/80 hover:border-indigo-400/50 transition-colors">
-          <Award className="w-3.5 h-3.5 text-indigo-400" />
-          <span className="text-[11px] font-mono font-medium text-slate-200 tracking-wider">
-            Amazon Scholar
-          </span>
-          <Sparkles className="w-3 h-3 text-amber-300" />
+        {/* Left Side Scrim */}
+        <div className="absolute inset-y-0 left-0 w-8 sm:w-12 bg-gradient-to-r from-[#050814] via-[#050814]/50 to-transparent pointer-events-none z-20" />
+
+        {/* Right Side Scrim */}
+        <div className="absolute inset-y-0 right-0 w-8 sm:w-12 bg-gradient-to-l from-[#050814] via-[#050814]/50 to-transparent pointer-events-none z-20" />
+
+        {/* Top Scrim */}
+        <div className="absolute inset-x-0 top-0 h-8 sm:h-12 bg-gradient-to-b from-[#050814]/80 to-transparent pointer-events-none z-20" />
+      </div>
+
+      {/* ========================================================
+          3. Subtle Interactive Pulsing Cyan Nodes along Orbit
+          ======================================================== */}
+      {/* Lower Right Interactive Node (along the sweeping orbit curve) */}
+      <div 
+        className="absolute bottom-[28%] right-[8%] z-30 pointer-events-none"
+        style={{
+          transform: `translate3d(${mouseOffset.x * 0.3}px, ${mouseOffset.y * 0.3}px, 0)`,
+        }}
+      >
+        <div className="relative flex items-center justify-center">
+          <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-cyan-400 opacity-60"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-300 shadow-[0_0_8px_#22d3ee]"></span>
         </div>
+      </div>
+
+      {/* Top Left Orbit Accent Node */}
+      <div 
+        className="absolute top-[18%] left-[12%] z-30 pointer-events-none"
+        style={{
+          transform: `translate3d(${-mouseOffset.x * 0.2}px, ${-mouseOffset.y * 0.2}px, 0)`,
+        }}
+      >
+        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-300 shadow-[0_0_6px_#22d3ee] opacity-80"></span>
       </div>
     </div>
   );

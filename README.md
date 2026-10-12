@@ -25,7 +25,7 @@ A futuristic, high-performance personal portfolio website engineered with React 
   * **Crypto Tracker**: Live Cryptocurrency Analytics Application.
   * Includes interactive case study modals with architectural breakdowns.
 * **Achievements & Evidence Gallery**:
-  * Filterable gallery showcasing **Amazon Scholar**, **SIH Internal Hackathon Top 3**, and **120+ Algorithmic Challenges Solved**.
+  * Filterable gallery showcasing **Amazon Scholar**, **SIH Internal Hackathon Top 3**, and **20+ LeetCode Problems Solved**.
 * **Illuminated Journey Timeline**:
   * Tracing the evolution from foundational programming logic to full-stack systems and B.Tech CSE (Expected 2028).
 * **Resume & Credentials Section**:

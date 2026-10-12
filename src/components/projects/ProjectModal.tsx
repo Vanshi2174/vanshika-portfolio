@@ -12,9 +12,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div 
-        className="relative w-full max-w-3xl glass-panel rounded-3xl border border-white/15 p-6 sm:p-8 shadow-2xl shadow-indigo-950/80 overflow-y-auto max-h-[90vh]"
+        className="relative w-full max-w-3xl glass-panel rounded-3xl border border-white/15 p-5 sm:p-8 shadow-2xl shadow-indigo-950/80 overflow-y-auto max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}

@@ -5,8 +5,18 @@ export interface Skill {
   category: 'programming' | 'frontend' | 'cs' | 'tools' | 'learning';
   icon: string;
   description: string;
-  status: 'Core Stack' | 'In Progress' | 'Exploring';
+  status: 'Core Stack' | 'Learning' | 'In Progress' | 'Exploring';
+  progress?: number;
   tag?: string;
+}
+
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  issueDate?: string;
+  fileUrl: string;
+  fileType: 'pdf' | 'image';
 }
 
 export interface Project {

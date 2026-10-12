@@ -56,14 +56,14 @@ export const Achievements: React.FC = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-10 sm:mb-12">
           {categories.map((cat) => {
             const isActive = selectedCategory === cat.value;
             return (
               <button
                 key={cat.value}
                 onClick={() => setSelectedCategory(cat.value)}
-                className={`px-4 py-2 rounded-full text-xs font-mono font-medium transition-all duration-200 cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-mono font-medium transition-all duration-200 cursor-pointer ${
                   isActive
                     ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-600/30 scale-105'
                     : 'glass-panel text-slate-300 hover:text-white hover:border-white/20'
@@ -80,18 +80,18 @@ export const Achievements: React.FC = () => {
           {filteredAchievements.map((item) => (
             <div
               key={item.id}
-              className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-violet-500/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between shadow-xl shadow-black/60"
+              className="glass-panel p-5 sm:p-8 rounded-3xl border border-white/10 hover:border-violet-500/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between shadow-xl shadow-black/60"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="flex items-start justify-between gap-2 mb-4">
+                  <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                     {getCategoryIcon(item.category)}
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/25 uppercase font-bold tracking-wider">
+                  <div className="flex flex-wrap items-center justify-end gap-1.5 sm:gap-2 text-right">
+                    <span className="text-[10px] font-mono px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/25 uppercase font-bold tracking-wider">
                       {item.badge}
                     </span>
-                    <span className="text-xs font-mono text-slate-500">
+                    <span className="text-[11px] sm:text-xs font-mono text-slate-500">
                       {item.year}
                     </span>
                   </div>
@@ -120,12 +120,23 @@ export const Achievements: React.FC = () => {
               </div>
 
               <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-                <button
-                  onClick={() => setActiveModalItem(item)}
-                  className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition-colors cursor-pointer"
-                >
-                  <span>Inspect Evidence & Details ➔</span>
-                </button>
+                {item.linkUrl ? (
+                  <a
+                    href={item.linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <span>Inspect Evidence & Details ➔</span>
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => setActiveModalItem(item)}
+                    className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <span>Inspect Evidence & Details ➔</span>
+                  </button>
+                )}
                 <span className="text-[11px] font-mono text-slate-500 uppercase">
                   Verified
                 </span>
@@ -183,6 +194,17 @@ export const Achievements: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {activeModalItem.linkUrl && (
+              <a
+                href={activeModalItem.linkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full mb-3 py-2.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 text-xs font-semibold font-mono flex items-center justify-center gap-2 transition-colors"
+              >
+                <span>Inspect Evidence on LeetCode Profile ➔</span>
+              </a>
+            )}
 
             <button
               onClick={() => setActiveModalItem(null)}

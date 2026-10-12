@@ -1,6 +1,7 @@
 import React from 'react';
 import { Code, Terminal, Sparkles, CheckCircle2, ShieldCheck, GraduationCap } from 'lucide-react';
 import { PERSONAL_INFO, ABOUT_METRICS } from '../../data/portfolioData';
+import { TiltCard } from '../common/TiltCard';
 
 export const About: React.FC = () => {
   return (
@@ -41,9 +42,13 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* Focus Area Cards */}
+            {/* Focus Area Cards with 3D Tilt */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="glass-panel p-4 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all group">
+              <TiltCard
+                maxTilt={8}
+                glowColor="rgba(99, 102, 241, 0.15)"
+                className="glass-panel p-4 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all group"
+              >
                 <div className="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3 group-hover:scale-110 transition-transform">
                   <Code className="w-4 h-4" />
                 </div>
@@ -51,19 +56,27 @@ export const About: React.FC = () => {
                 <p className="text-[12px] text-slate-400 leading-snug">
                   Responsive React apps with modern state and glassmorphic UI.
                 </p>
-              </div>
+              </TiltCard>
 
-              <div className="glass-panel p-4 rounded-2xl border border-white/5 hover:border-cyan-500/30 transition-all group">
+              <TiltCard
+                maxTilt={8}
+                glowColor="rgba(6, 182, 212, 0.15)"
+                className="glass-panel p-4 rounded-2xl border border-white/5 hover:border-cyan-500/30 transition-all group"
+              >
                 <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-3 group-hover:scale-110 transition-transform">
                   <Terminal className="w-4 h-4" />
                 </div>
                 <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-1">DSA & Problem Solving</h4>
                 <p className="text-[12px] text-slate-400 leading-snug">
-                  120+ algorithmic challenges solved with complexity optimization.
+                  20+ LeetCode problems solved with complexity optimization.
                 </p>
-              </div>
+              </TiltCard>
 
-              <div className="glass-panel p-4 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all group">
+              <TiltCard
+                maxTilt={8}
+                glowColor="rgba(168, 85, 247, 0.15)"
+                className="glass-panel p-4 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all group"
+              >
                 <div className="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3 group-hover:scale-110 transition-transform">
                   <Sparkles className="w-4 h-4" />
                 </div>
@@ -71,14 +84,17 @@ export const About: React.FC = () => {
                 <p className="text-[12px] text-slate-400 leading-snug">
                   Practical integrations for speech scoring and real-world feedback.
                 </p>
-              </div>
+              </TiltCard>
             </div>
           </div>
 
-          {/* Right Column: Key Metrics Glass Card */}
+          {/* Right Column: Key Metrics Glass Card with 3D Tilt */}
           <div className="lg:col-span-5 flex flex-col">
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 flex-1 flex flex-col justify-between shadow-2xl shadow-black/80 relative overflow-hidden">
-              
+            <TiltCard
+              maxTilt={5}
+              glowColor="rgba(99, 102, 241, 0.18)"
+              className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 flex-1 flex flex-col justify-between shadow-2xl shadow-black/80 relative overflow-hidden"
+            >
               <div className="flex items-center justify-between pb-6 border-b border-white/5">
                 <div className="flex items-center gap-2">
                   <GraduationCap className="w-5 h-5 text-indigo-400" />
@@ -116,7 +132,7 @@ export const About: React.FC = () => {
                 <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Verified student milestones. Consistent daily commitment.</span>
               </div>
-            </div>
+            </TiltCard>
           </div>
 
         </div>

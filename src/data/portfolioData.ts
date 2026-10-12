@@ -1,4 +1,4 @@
-import { Project, Skill, Achievement, JourneyMilestone, StatItem } from '../types';
+import { Project, Skill, Achievement, JourneyMilestone, StatItem, Certification } from '../types';
 
 export const PERSONAL_INFO = {
   name: "Vanshika Prajapati",
@@ -11,22 +11,22 @@ export const PERSONAL_INFO = {
   status: "Available for Opportunities: India",
   headline: "I build scalable software, intelligent systems, and interactive digital experiences.",
   aboutBrief: "Computer Science undergraduate focused on software engineering, algorithmic problem solving, modern frontend architectures, and emerging AI technologies. I continuously learn, build projects, participate in hackathons, and turn ideas into practical, reliable systems.",
-  email: "vanshikaprajapati@example.com", // Editable placeholder
-  github: "https://github.com",
+  email: "vanshika2174@gmail.com",
+  github: "https://github.com/Vanshi2174",
   linkedin: "https://linkedin.com",
-  leetcode: "https://leetcode.com",
-  resumePath: "/profile-raw.png", // Will trigger modal/download
+  leetcode: "https://leetcode.com/u/Vanshika_Prajapati123",
+  resumePath: "/resume.pdf", // Authentic resume PDF
 };
 
 export const HERO_STATS: StatItem[] = [
-  { value: "120+", label: "Problems Solved", subtext: "DSA & Algorithms" },
+  { value: "20+", label: "Problems Solved", subtext: "LeetCode Practice" },
   { value: "4+", label: "Projects Built", subtext: "Full-Stack & Systems" },
   { value: "Top 3", label: "Hackathon Placement", subtext: "SIH Internal" },
   { value: "2028", label: "B.Tech CSE", subtext: "Expected Graduation" }
 ];
 
 export const ABOUT_METRICS = [
-  { label: "Problems Solved", value: "120+", subtext: "Arrays, Trees, Graphs, DP" },
+  { label: "Problems Solved", value: "20+", subtext: "LeetCode Practice" },
   { label: "Projects Built", value: "4+", subtext: "AI & Full-Stack Systems" },
   { label: "Hackathon Honors", value: "Top 3", subtext: "Internal SIH Hackathon" },
   { label: "Recognition", value: "Amazon Scholar", subtext: "Excellence Program" },
@@ -34,31 +34,83 @@ export const ABOUT_METRICS = [
 ];
 
 export const SKILLS_DATA: Skill[] = [
-  // Programming
-  { name: "Java", category: "programming", icon: "Coffee", description: "Primary object-oriented language for robust systems & DSA", status: "Core Stack" },
-  { name: "Python", category: "programming", icon: "FileCode", description: "Applied for scripting, problem-solving, and AI/ML experiments", status: "Core Stack" },
-  { name: "JavaScript", category: "programming", icon: "Code2", description: "Modern ES6+ frontend interactivity and application logic", status: "Core Stack" },
+  // Core Stack - Programming
+  { name: "Java", category: "programming", icon: "Coffee", description: "Primary object-oriented language for robust systems & DSA", status: "Core Stack", progress: 70 },
+  { name: "Python (Basics)", category: "programming", icon: "FileCode", description: "Applied for scripting, problem-solving, and algorithmic experiments", status: "Core Stack", progress: 60 },
+  { name: "JavaScript", category: "programming", icon: "Code2", description: "Modern ES6+ frontend interactivity and application logic", status: "Core Stack", progress: 60 },
 
-  // Frontend
-  { name: "React", category: "frontend", icon: "Atom", description: "Component-driven architectures, hooks, and reactive state", status: "Core Stack" },
-  { name: "HTML5", category: "frontend", icon: "Layout", description: "Semantic markup, accessibility, and modern web structure", status: "Core Stack" },
-  { name: "CSS3 & Tailwind", category: "frontend", icon: "Palette", description: "Responsive layouts, sleek glassmorphism, and modern styling", status: "Core Stack" },
+  // Core Stack - Frontend
+  { name: "HTML5", category: "frontend", icon: "Layout", description: "Semantic markup, accessibility, and modern web structure", status: "Core Stack", progress: 85 },
+  { name: "CSS3", category: "frontend", icon: "Palette", description: "Responsive styling, modern layouts, and visual design fundamentals", status: "Core Stack", progress: 80 },
 
-  // Computer Science
-  { name: "Data Structures & Algorithms", category: "cs", icon: "Binary", description: "Core algorithmic problem-solving with time/space complexity optimization", status: "Core Stack" },
-  { name: "Object-Oriented Programming", category: "cs", icon: "Boxes", description: "Encapsulation, inheritance, polymorphism, and clean modular code", status: "Core Stack" },
-  { name: "Database Systems", category: "cs", icon: "Database", description: "Relational data modeling, SQL queries, and normalization", status: "Core Stack" },
+  // Core Stack - Computer Science
+  { name: "Data Structures & Algorithms", category: "cs", icon: "Binary", description: "Core algorithmic problem-solving with time/space complexity optimization", status: "Core Stack", progress: 70 },
+  { name: "OOP", category: "cs", icon: "Boxes", description: "Encapsulation, inheritance, polymorphism, and clean modular code", status: "Core Stack", progress: 75 },
 
-  // Tools
-  { name: "Git", category: "tools", icon: "GitBranch", description: "Distributed version control, branching workflows, and tracking", status: "Core Stack" },
-  { name: "GitHub", category: "tools", icon: "Github", description: "Remote repository collaboration, open source, and code reviews", status: "Core Stack" },
-  { name: "VS Code", category: "tools", icon: "Terminal", description: "Primary lightweight development environment and tooling", status: "Core Stack" },
-  { name: "IntelliJ IDEA", category: "tools", icon: "Layers", description: "Enterprise Java development and debugging environment", status: "Core Stack" },
+  // Core Stack - Tools
+  { name: "Git", category: "tools", icon: "GitBranch", description: "Distributed version control, branching workflows, and tracking", status: "Core Stack", progress: 75 },
+  { name: "GitHub", category: "tools", icon: "Github", description: "Remote repository collaboration, open source, and code reviews", status: "Core Stack", progress: 75 },
+  { name: "VS Code", category: "tools", icon: "Terminal", description: "Primary lightweight development environment and tooling", status: "Core Stack", progress: 85 },
+  { name: "IntelliJ IDEA", category: "tools", icon: "Layers", description: "Enterprise Java development and debugging environment", status: "Core Stack", progress: 80 },
 
-  // Learning / Exploring
-  { name: "Spring Boot", category: "learning", icon: "Cpu", description: "Java backend enterprise framework for RESTful microservices", status: "In Progress" },
-  { name: "AWS Cloud Basics", category: "learning", icon: "Cloud", description: "Cloud computing fundamentals, deployment, and hosting", status: "Exploring" },
-  { name: "AI Integration", category: "learning", icon: "Sparkles", description: "Connecting LLM APIs, prompt engineering, and intelligent features", status: "In Progress" },
+  // Learning
+  { name: "Database Systems", category: "learning", icon: "Database", description: "Relational data modeling, SQL queries, and normalization", status: "Learning", progress: 55 },
+  { name: "React", category: "learning", icon: "Atom", description: "Component-driven architectures, hooks, and reactive state", status: "Learning", progress: 55 },
+  { name: "Tailwind CSS", category: "learning", icon: "Palette", description: "Utility-first modern CSS framework and responsive design systems", status: "Learning", progress: 55 },
+  { name: "AWS Cloud Basics", category: "learning", icon: "Cloud", description: "Cloud computing fundamentals, deployment, and hosting", status: "Learning", progress: 45 },
+  { name: "AI Integration", category: "learning", icon: "Sparkles", description: "Connecting LLM APIs, prompt engineering, and intelligent features", status: "Learning", progress: 50 },
+];
+
+export const CERTIFICATIONS_DATA: Certification[] = [
+  {
+    id: "google-ai-essentials",
+    title: "Google AI Essentials",
+    issuer: "Google (Coursera)",
+    issueDate: "May 18, 2026",
+    fileUrl: "/certificates/Google_AI.pdf",
+    fileType: "pdf",
+  },
+  {
+    id: "google-prompting-essentials",
+    title: "Google Prompting Essentials",
+    issuer: "Google (Coursera)",
+    issueDate: "May 19, 2026",
+    fileUrl: "/certificates/Google_Prompting.pdf",
+    fileType: "pdf",
+  },
+  {
+    id: "aws-cloud-foundations",
+    title: "AWS Academy Graduate — Cloud Foundations",
+    issuer: "AWS Academy",
+    issueDate: "Oct 9, 2026",
+    fileUrl: "/certificates/AWS_Cloud_Foundations.pdf",
+    fileType: "pdf",
+  },
+  {
+    id: "aws-devops-engineer",
+    title: "AWS DevOps Engineer Certification 2022",
+    issuer: "Infosys Springboard",
+    issueDate: "July 19, 2026",
+    fileUrl: "/certificates/Devops.pdf",
+    fileType: "pdf",
+  },
+  {
+    id: "dsa-java-afe",
+    title: "Basics of Java and DSA — AFE Bootcamp",
+    issuer: "Amazon Future Engineer / NavGurukul / Zuvy",
+    issueDate: "February 2026",
+    fileUrl: "/certificates/DSA_Java.pdf",
+    fileType: "pdf",
+  },
+  {
+    id: "python-ai-afe",
+    title: "Basics of Python and AI — AFE Bootcamp",
+    issuer: "Amazon Future Engineer / NavGurukul / Zuvy",
+    issueDate: "March 2025",
+    fileUrl: "/certificates/Python_Afe.pdf",
+    fileType: "pdf",
+  },
+
 ];
 
 export const PROJECTS_DATA: Project[] = [
@@ -152,16 +204,18 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
   },
   {
     id: "dsa-milestone",
-    title: "120+ Algorithmic Problems Solved",
-    organization: "LeetCode & Competitive Platforms",
+    title: "20+ LeetCode Problems Solved",
+    organization: "LeetCode",
     year: "2024–Present",
     category: "competitive",
-    badge: "ALGORITHMIC MILESTONE",
-    description: "Active practice on LeetCode and competitive programming platforms, consistently sharpening algorithmic efficiency and data structure proficiency.",
+    badge: "LEETCODE MILESTONE",
+    description: "Active practice on LeetCode, solving algorithmic challenges and strengthening core data structures and problem-solving skills.",
+    linkUrl: "https://leetcode.com/u/Vanshika_Prajapati123",
+    linkText: "Inspect Evidence & Details",
     evidencePoints: [
-      "Mastery of Arrays, Two Pointers, Sliding Window, and Hash Maps",
-      "Solid foundation in Trees, Binary Search, Recursion, and Dynamic Programming",
-      "Focus on optimal time and space complexity analysis"
+      "Problem-solving practice across core topics including Arrays, Strings, and Hash Maps",
+      "Focus on foundational algorithmic logic and data structure implementations",
+      "Emphasis on understanding time and space complexity analysis"
     ]
   },
   {
@@ -186,7 +240,7 @@ export const JOURNEY_DATA: JourneyMilestone[] = [
     phase: "PHASE 01 • FOUNDATIONS",
     title: "Programming Fundamentals & Algorithmic Rigor",
     subtitle: "Core Computer Science, Java, and Problem Solving",
-    description: "Initiated rigorous Computer Science Engineering curriculum. Mastered Java, object-oriented concepts, and computational problem-solving. Solved 120+ challenges across fundamental data structures.",
+    description: "Initiated rigorous Computer Science Engineering curriculum. Learned Java, object-oriented concepts, and computational problem-solving. Solved 20+ LeetCode problems across fundamental data structures.",
     skills: ["Java", "OOP", "Data Structures", "Algorithms", "Git"],
     status: "Completed"
   },

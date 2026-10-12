@@ -2,10 +2,13 @@ import React from 'react';
 import { Mail, ArrowUp } from 'lucide-react';
 import { PERSONAL_INFO } from '../../data/portfolioData';
 import { GithubIcon, LinkedinIcon, LeetCodeIcon } from './Icons';
+import { useSmoothScroll } from './SmoothScrollProvider';
 
 export const Footer: React.FC = () => {
+  const { scrollTo } = useSmoothScroll();
+
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollTo(0, { offset: 0 });
   };
 
   return (

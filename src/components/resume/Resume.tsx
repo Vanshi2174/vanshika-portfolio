@@ -18,8 +18,8 @@ export const Resume: React.FC = () => {
 
     // Create download link for resume
     const link = document.createElement('a');
-    link.href = '/profile.png'; // Fallback / placeholder until custom PDF is supplied
-    link.download = 'Vanshika_Prajapati_Resume.png';
+    link.href = '/resume.pdf';
+    link.download = 'Vanshika_Prajapati_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

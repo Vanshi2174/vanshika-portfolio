@@ -141,7 +141,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-[11px] font-mono text-slate-400 uppercase">GitHub Profile</div>
-                  <div className="text-xs sm:text-sm font-semibold text-white">github.com/vanshikaprajapati</div>
+                  <div className="text-xs sm:text-sm font-semibold text-white">github.com/Vanshi2174</div>
                 </div>
               </div>
               <span className="text-xs font-mono text-cyan-400 group-hover:translate-x-0.5 transition-transform">↗</span>

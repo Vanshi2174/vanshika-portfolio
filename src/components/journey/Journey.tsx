@@ -28,7 +28,7 @@ export const Journey: React.FC = () => {
         <div className="relative max-w-4xl mx-auto">
           
           {/* Vertical Glowing Line */}
-          <div className="absolute top-0 bottom-0 left-4 sm:left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-indigo-500 via-cyan-400 to-purple-600/30 opacity-70" />
+          <div className="absolute top-0 bottom-0 left-3 sm:left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-indigo-500 via-cyan-400 to-purple-600/30 opacity-70" />
 
           {/* Timeline Nodes */}
           <div className="space-y-12 sm:space-y-16">
@@ -42,19 +42,19 @@ export const Journey: React.FC = () => {
                   }`}
                 >
                   {/* Central Node Badge */}
-                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#050508] border-2 border-cyan-400 flex items-center justify-center z-10 shadow-lg shadow-cyan-400/30">
-                    <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+                  <div className="absolute left-3 sm:left-1/2 -translate-x-1/2 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-[#050508] border-2 border-cyan-400 flex items-center justify-center z-10 shadow-lg shadow-cyan-400/30">
+                    <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-cyan-400 animate-pulse" />
                   </div>
 
                   {/* Spacer for 2-column alternating layout */}
                   <div className="hidden sm:block sm:w-1/2" />
 
                   {/* Content Card */}
-                  <div className={`w-full sm:w-1/2 pl-12 sm:pl-0 ${isEven ? 'sm:pr-10 text-left sm:text-right' : 'sm:pl-10 text-left'}`}>
-                    <div className="glass-panel p-6 sm:p-7 rounded-3xl border border-white/10 hover:border-indigo-500/40 transition-all duration-300 group shadow-xl shadow-black/70">
+                  <div className={`w-full sm:w-1/2 pl-9 sm:pl-0 ${isEven ? 'sm:pr-10 text-left sm:text-right' : 'sm:pl-10 text-left'}`}>
+                    <div className="glass-panel p-5 sm:p-7 rounded-3xl border border-white/10 hover:border-indigo-500/40 transition-all duration-300 group shadow-xl shadow-black/70">
                       
-                      <div className={`flex items-center gap-2 mb-2 ${isEven ? 'sm:justify-end' : ''}`}>
-                        <span className="text-[10px] font-mono font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-md bg-indigo-500/10 border border-indigo-500/25 text-indigo-300">
+                      <div className={`flex flex-wrap items-center gap-2 mb-2 ${isEven ? 'sm:justify-end' : ''}`}>
+                        <span className="text-[10px] font-mono font-bold tracking-wider uppercase px-2 sm:px-2.5 py-0.5 rounded-md bg-indigo-500/10 border border-indigo-500/25 text-indigo-300">
                           {milestone.phase}
                         </span>
                         <div className="flex items-center gap-1 text-xs font-mono text-cyan-400">

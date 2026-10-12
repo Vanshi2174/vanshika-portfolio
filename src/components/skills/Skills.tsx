@@ -7,6 +7,7 @@ import {
 import { SKILLS_DATA } from '../../data/portfolioData';
 import { SkillCategory, Skill } from '../../types';
 import { GithubIcon } from '../common/Icons';
+import { TiltCard } from '../common/TiltCard';
 
 // Map icon strings to components
 const iconMap: Record<string, React.ReactNode> = {
@@ -85,12 +86,14 @@ export const Skills: React.FC = () => {
           })}
         </div>
 
-        {/* Skills Cards Grid */}
+        {/* Skills Cards Grid with 3D Tilt & Cursor Glow */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredSkills.map((skill, index) => (
-            <div
+            <TiltCard
               key={index}
-              className="glass-panel p-5 rounded-2xl border border-white/5 hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between"
+              maxTilt={8}
+              glowColor="rgba(6, 182, 212, 0.12)"
+              className="glass-panel p-5 rounded-2xl border border-white/5 hover:border-indigo-500/40 transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -100,8 +103,10 @@ export const Skills: React.FC = () => {
                   <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
                     skill.status === 'Core Stack'
                       ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25'
-                      : skill.status === 'In Progress'
+                      : skill.status === 'Learning'
                       ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/25'
+                      : skill.status === 'In Progress'
+                      ? 'bg-blue-500/10 text-blue-300 border-blue-500/25'
                       : 'bg-purple-500/10 text-purple-300 border-purple-500/25'
                   }`}>
                     {skill.status}
@@ -116,16 +121,40 @@ export const Skills: React.FC = () => {
                 </p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                <span className="capitalize">{skill.category}</span>
-                <span className="text-slate-600">• • •</span>
+              {/* Progress Indicator & Category Footer */}
+              <div className="mt-4 pt-3 border-t border-white/5 space-y-2.5">
+                {typeof skill.progress === 'number' && (
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[10px] font-mono">
+                      <span className="text-slate-400">
+                        {skill.status === 'Core Stack' ? 'Proficiency' : 'Progress'}
+                      </span>
+                      <span className="text-cyan-400 font-semibold">{skill.progress}%</span>
+                    </div>
+                    <div className="w-full h-1.5 rounded-full bg-white/5 border border-white/10 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-1000 ease-out shadow-[0_0_8px_rgba(6,182,212,0.4)]"
+                        style={{ width: `${skill.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between text-[11px] font-mono text-slate-500">
+                  <span className="capitalize">{skill.category}</span>
+                  <span className="text-slate-600">• • •</span>
+                </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
 
         {/* Integrated Skill Architecture Overview */}
-        <div className="mt-16 glass-panel p-6 sm:p-8 rounded-3xl border border-white/10">
+        <TiltCard
+          maxTilt={3}
+          glowColor="rgba(99, 102, 241, 0.1)"
+          className="mt-16 glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 shadow-xl"
+        >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/5">
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
@@ -137,7 +166,7 @@ export const Skills: React.FC = () => {
               </p>
             </div>
             <div className="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20 w-fit">
-              NO FABRICATED RATINGS • PRACTICAL EXPERIENCE
+              STRUCTURED PROFICIENCY & LEARNING ROADMAP
             </div>
           </div>
 
@@ -186,7 +215,7 @@ export const Skills: React.FC = () => {
                 04. Expanding Horizon
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {['Spring Boot', 'AWS Cloud', 'AI Integration'].map((tech) => (
+                {['AWS Cloud', 'AI Integration'].map((tech) => (
                   <span key={tech} className="px-2.5 py-1 text-xs rounded-lg bg-white/5 text-slate-300 border border-white/10">
                     {tech}
                   </span>
@@ -194,7 +223,7 @@ export const Skills: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </TiltCard>
 
       </div>
     </section>

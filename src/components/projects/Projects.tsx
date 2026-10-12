@@ -4,6 +4,8 @@ import { PROJECTS_DATA } from '../../data/portfolioData';
 import { Project } from '../../types';
 import { ProjectModal } from './ProjectModal';
 import { GithubIcon } from '../common/Icons';
+import { TiltCard } from '../common/TiltCard';
+import { MagneticButton } from '../common/MagneticButton';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -24,16 +26,16 @@ export const Projects: React.FC = () => {
             </div>
             {/* Visual Waveform Mockup */}
             <div className="space-y-2 py-3">
-              <div className="flex items-end gap-1.5 h-16 justify-center">
+              <div className="flex items-end gap-1 sm:gap-1.5 h-16 justify-center overflow-hidden">
                 {[35, 60, 45, 80, 95, 65, 40, 85, 70, 50, 90, 75, 45, 60, 30].map((h, i) => (
                   <div
                     key={i}
                     style={{ height: `${h}%` }}
-                    className="w-1.5 rounded-full bg-gradient-to-t from-indigo-500 to-cyan-400 opacity-80"
+                    className="w-1 sm:w-1.5 rounded-full bg-gradient-to-t from-indigo-500 to-cyan-400 opacity-80 shrink-0"
                   />
                 ))}
               </div>
-              <div className="flex justify-between text-[10px] font-mono text-slate-400 pt-2 border-t border-white/5">
+              <div className="flex flex-wrap justify-between gap-1 text-[9px] sm:text-[10px] font-mono text-slate-400 pt-2 border-t border-white/5">
                 <span>Coherence: 94%</span>
                 <span>Pacing: Optimal</span>
                 <span>Vocabulary: Rich</span>
@@ -59,18 +61,18 @@ export const Projects: React.FC = () => {
               </span>
             </div>
             {/* Pipeline Status Mockup */}
-            <div className="grid grid-cols-3 gap-2 py-2">
-              <div className="glass-panel p-2 rounded-xl text-center">
-                <div className="text-[10px] text-slate-400 font-mono">Flow Rate</div>
-                <div className="text-sm font-bold text-sky-300 font-mono">42 L/m</div>
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-2">
+              <div className="glass-panel p-1.5 sm:p-2 rounded-xl text-center min-w-0">
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono truncate">Flow Rate</div>
+                <div className="text-xs sm:text-sm font-bold text-sky-300 font-mono truncate">42 L/m</div>
               </div>
-              <div className="glass-panel p-2 rounded-xl text-center">
-                <div className="text-[10px] text-slate-400 font-mono">Pressure</div>
-                <div className="text-sm font-bold text-white font-mono">2.4 bar</div>
+              <div className="glass-panel p-1.5 sm:p-2 rounded-xl text-center min-w-0">
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono truncate">Pressure</div>
+                <div className="text-xs sm:text-sm font-bold text-white font-mono truncate">2.4 bar</div>
               </div>
-              <div className="glass-panel p-2 rounded-xl text-center">
-                <div className="text-[10px] text-slate-400 font-mono">Reservoir</div>
-                <div className="text-sm font-bold text-emerald-300 font-mono">88%</div>
+              <div className="glass-panel p-1.5 sm:p-2 rounded-xl text-center min-w-0">
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono truncate">Reservoir</div>
+                <div className="text-xs sm:text-sm font-bold text-emerald-300 font-mono truncate">88%</div>
               </div>
             </div>
             <div className="flex items-center gap-2 text-xs text-sky-300 font-mono">
@@ -136,12 +138,14 @@ export const Projects: React.FC = () => {
           </p>
         </div>
 
-        {/* Project Cards List */}
+        {/* Project Cards List with 3D Tilt */}
         <div className="space-y-12">
           {PROJECTS_DATA.map((project, index) => (
-            <div
+            <TiltCard
               key={project.id}
-              className="glass-panel p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/10 hover:border-indigo-500/30 transition-all duration-300 group shadow-2xl shadow-black/80"
+              maxTilt={4}
+              glowColor="rgba(99, 102, 241, 0.16)"
+              className="glass-panel p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/10 hover:border-indigo-500/40 transition-all duration-300 group shadow-2xl shadow-black/80"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
@@ -186,25 +190,29 @@ export const Projects: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
+                  {/* Action Buttons with Magnetic Effects */}
                   <div className="flex flex-wrap items-center gap-4 pt-2">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-600/20 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-                    >
-                      <span>Explore Case Study</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
+                    <MagneticButton strength={0.25}>
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-600/20 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                      >
+                        <span>Explore Case Study</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </MagneticButton>
 
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold glass-panel text-slate-300 hover:text-white hover:border-white/20 transition-all hover:scale-105"
-                    >
-                      <GithubIcon className="w-3.5 h-3.5" />
-                      <span>Source Code</span>
-                    </a>
+                    <MagneticButton strength={0.25}>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold glass-panel text-slate-300 hover:text-white hover:border-white/20 transition-all hover:scale-105 block"
+                      >
+                        <GithubIcon className="w-3.5 h-3.5" />
+                        <span>Source Code</span>
+                      </a>
+                    </MagneticButton>
                   </div>
                 </div>
 
@@ -219,7 +227,7 @@ export const Projects: React.FC = () => {
                 </div>
 
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
 

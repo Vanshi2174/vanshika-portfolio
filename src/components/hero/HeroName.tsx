@@ -11,11 +11,11 @@ import React from 'react';
 export const HeroName: React.FC = () => {
   return (
     <div className="select-none py-1">
-      <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.98] uppercase">
+      <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] xl:text-[6rem] font-black tracking-tight leading-[0.95] uppercase">
         <span className="block text-white">
           VANSHIKA
         </span>
-        <span className="block bg-gradient-to-r from-blue-500 via-indigo-400 to-cyan-400 bg-clip-text text-transparent filter drop-shadow-[0_10px_20px_rgba(99,102,241,0.25)]">
+        <span className="block bg-gradient-to-r from-[#4f75ff] via-[#38bdf8] to-[#22d3ee] bg-clip-text text-transparent filter drop-shadow-[0_8px_24px_rgba(56,189,248,0.3)]">
           PRAJAPATI
         </span>
       </h1>
